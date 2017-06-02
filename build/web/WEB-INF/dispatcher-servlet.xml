@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                http://www.springframework.org/schema/mvc
+                http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- declaring base package -->
+    <context:annotation-config />
+    <context:component-scan base-package="controller" />
+    
+     <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+     
+    <!-- adding view resolver to show jsp's on browser -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    
+    <!-- declare beans -->
+    <bean id="diaDiemDAO" class="dao.DiaDiemDAOImpl" />
+    <bean id="diaDiemService" class="service.DiaDiemServiceImpl" />
+    <bean id="lichTrinhDAO" class="dao.LichTrinhDAOImpl" />
+    <bean id="lichTrinhService" class="service.LichTrinhServiceImpl" />
+    <bean id="userDAO" class="dao.UserDAOImpl" />
+    <bean id="userService" class="service.UserServiceImpl" />
+    <bean id="tinTucDAO" class="dao.TinTucDAOImpl" />
+    <bean id="tinTucService" class="service.TinTucServiceImpl" />
+    <bean id="loaiTinDAO" class="dao.LoaiTinDAOImpl" />
+    <bean id="loaiTinService" class="service.LoaiTinServiceImpl" />
+    <bean id="ctltDAO" class="dao.ChiTietLichTrinhDAOImpl" />
+    <bean id="ctltService" class="service.ChiTietLichTrinhServiceImpl" />
+    
+    <mvc:resources mapping="/resources/**" location="/resources/"  
+                   cache-period="31556926"/>
+    <mvc:annotation-driven />
+
+</beans>
